@@ -4,9 +4,7 @@
     PostgreSQL
 
 ### REST API endpoints
-    GET     /customers
-    GET     /customers/{licencePlate}
-    POST    /customer
-    PUT     /customer/{id}
+    GET  /customers
+    GET  /customers/{licensePlate}
 
 

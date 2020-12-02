@@ -24,6 +24,16 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(int id, String firstName, String lastName, String email, String phoneNumber, String carBrand, String carModel, String licensePlate) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.carBrand = carBrand;
+        this.carModel = carModel;
+        this.licensePlate = licensePlate;
+    }
 
     // Getters & Setters
     public int getId() {
