@@ -17,7 +17,7 @@ public class Customer {
     private String carModel;
 
     @Column(unique = true)
-    private String licencePlate;
+    private String licensePlate;
 
 
     // Constructor
@@ -82,11 +82,11 @@ public class Customer {
         this.carModel = carModel;
     }
 
-    public String getLicencePlate() {
-        return licencePlate;
+    public String getLicensePlate() {
+        return licensePlate;
     }
 
-    public void setLicencePlate(String licencePlate) {
-        this.licencePlate = licencePlate;
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 }
