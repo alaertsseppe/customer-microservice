@@ -1,10 +1,11 @@
 package fact.it.customerservice.controller;
 
-import org.springframework.stereotype.Controller;
+import fact.it.customerservice.repository.CustomerRepository;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class CustomerController {
-
+    private CustomerRepository customerRepository;
 
     // GET /customers
     // GET /customers/{licensePlate}
