@@ -9,6 +9,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String uuid;
     private String firstName;
     private String lastName;
     private String email;
@@ -24,8 +25,9 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int id, String firstName, String lastName, String email, String phoneNumber, String carBrand, String carModel, String licensePlate) {
+    public Customer(int id, String uuid, String firstName, String lastName, String email, String phoneNumber, String carBrand, String carModel, String licensePlate) {
         this.id = id;
+        this.uuid = uuid;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -43,6 +45,10 @@ public class Customer {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getUuid(){ return uuid; }
+
+    public void setUuid(){ this.uuid = uuid; }
 
     public String getFirstName() {
         return firstName;
