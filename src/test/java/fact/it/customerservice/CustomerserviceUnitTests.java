@@ -36,7 +36,7 @@ public class CustomerserviceUnitTests {
     public void givenCustomers_whenGetCustomers_thenReturnJsonArray()
             throws Exception {
 
-        Customer customer = new Customer("c45700", "Phil", "Collins", "phil.collins@example.com", "1926765147", "Austin", "A35", "65fsg6");
+        Customer customer = new Customer("Phil", "Collins", "phil.collins@example.com", "1926765147", "Austin", "A35", "65fsg6");
 
         List<Customer> allCustomers = Arrays.asList(customer);
 

@@ -52,9 +52,9 @@ public class CustomerController {
     @PostConstruct
     public void fillDB(){
         if (customerRepository.count() == 0){
-            customerRepository.save(new Customer("c59486", "Jef", "Maes", "jef.maes@example.com", "0495662516", "Volkswagen", "Tiguan", "1-dfs-593"));
-            customerRepository.save(new Customer("c86249", "Karel", "Peeters", "karel.peeters@example.com", "0495662516", "Peugeot", "3008", "1-pdm-379"));
-            customerRepository.save(new Customer("c48316", "Marie", "Jacobs", "marie.jacobs@example.com", "0495662516", "Audi", "A6", "1-coe-285"));
+            customerRepository.save(new Customer("Jef", "Maes", "jef.maes@example.com", "0495662516", "Volkswagen", "Tiguan", "1-dfs-593"));
+            customerRepository.save(new Customer("Karel", "Peeters", "karel.peeters@example.com", "0495662516", "Peugeot", "3008", "1-pdm-379"));
+            customerRepository.save(new Customer("Marie", "Jacobs", "marie.jacobs@example.com", "0495662516", "Audi", "A6", "1-coe-285"));
         }
     }
 

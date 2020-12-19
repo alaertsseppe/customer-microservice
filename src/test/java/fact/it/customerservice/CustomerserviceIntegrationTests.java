@@ -21,9 +21,9 @@ public class CustomerserviceIntegrationTests {
     @Autowired
     private CustomerRepository customerRepository;
 
-    private Customer customer1 = new Customer("c45700", "Phil", "Collins", "phil.collins@example.com", "1926765147", "Austin", "A35", "65fsg6");
-    private Customer customer2 = new Customer("c70243", "Rick", "Astley", "rick.astley@example.com", "3266607771", "Reliant", "Rialto", "fer563");
-    private Customer customer3 = new Customer("c17636", "Freddie", "Mercury", "freddie.mercury@example.com", "8178613876", "Rolls Royce", "Silver Shadow", "6551er");
+    private Customer customer1 = new Customer("Phil", "Collins", "phil.collins@example.com", "1926765147", "Austin", "A35", "65fsg6");
+    private Customer customer2 = new Customer("Rick", "Astley", "rick.astley@example.com", "3266607771", "Reliant", "Rialto", "fer563");
+    private Customer customer3 = new Customer("Freddie", "Mercury", "freddie.mercury@example.com", "8178613876", "Rolls Royce", "Silver Shadow", "6551er");
 
     @BeforeEach
     public void beforeEachTest(){
