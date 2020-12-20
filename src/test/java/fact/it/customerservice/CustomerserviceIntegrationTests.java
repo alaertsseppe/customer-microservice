@@ -8,8 +8,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.assertj.core.api.Assertions.*;
+
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -39,74 +45,108 @@ public class CustomerserviceIntegrationTests {
     }
 
     @Test
-    public void whenFindByUuid_thenReturnCustomer() {
-        // Customer1
-        Customer found1 = customerRepository.findCustomerByUuid(customer1.getUuid());
-        assertThat(found1.getUuid())
-                .isEqualTo(customer1.getUuid());
-
-        // Customer2
-        Customer found2 = customerRepository.findCustomerByUuid(customer2.getUuid());
-        assertThat(found2.getUuid())
-                .isEqualTo(customer2.getUuid());
-
-        // Customer3
-        Customer found3 = customerRepository.findCustomerByUuid(customer3.getUuid());
-        assertThat(found3.getUuid())
-                .isEqualTo(customer3.getUuid());
+    public void whenGetCustomers_thenReturnJsonCustomer() throws Exception {
+        mockMvc.perform(get("/customers"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(3)));
     }
 
     @Test
-    public void whenFindByEmail_thenReturnCustomer() {
-        // Customer1
-        Customer found1 = customerRepository.findCustomerByEmail(customer1.getEmail());
-        assertThat(found1.getEmail())
-                .isEqualTo(customer1.getEmail());
-
-        // Customer2
-        Customer found2 = customerRepository.findCustomerByEmail(customer2.getEmail());
-        assertThat(found2.getEmail())
-                .isEqualTo(customer2.getEmail());
-
-        // Customer3
-        Customer found3 = customerRepository.findCustomerByEmail(customer3.getEmail());
-        assertThat(found3.getEmail())
-                .isEqualTo(customer3.getEmail());
+    public void givenCustomer_whenGetCustomerByUuid_thenReturnJsonCustomer() throws Exception {
+        mockMvc.perform(get("/customers/{uuid}", customer1.getUuid()))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$.id", is(customer1.getId())))
+                .andExpect(jsonPath("$.uuid", is(customer1.getUuid())))
+                .andExpect(jsonPath("$.licensePlate", is(customer1.getLicensePlate())))
+                .andExpect(jsonPath("$.firstName", is(customer1.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(customer1.getLastName())))
+                .andExpect(jsonPath("$.email", is(customer1.getEmail())))
+                .andExpect(jsonPath("$.phoneNumber", is(customer1.getPhoneNumber())))
+                .andExpect(jsonPath("$.carBrand", is(customer1.getCarBrand())))
+                .andExpect(jsonPath("$.carModel", is(customer1.getCarModel())));
     }
 
     @Test
-    public void whenFindByPhoneNumber_thenReturnCustomer() {
-        // Customer1
-        Customer found1 = customerRepository.findCustomerByPhoneNumber(customer1.getPhoneNumber());
-        assertThat(found1.getPhoneNumber())
-                .isEqualTo(customer1.getPhoneNumber());
-
-        // Customer2
-        Customer found2 = customerRepository.findCustomerByPhoneNumber(customer2.getPhoneNumber());
-        assertThat(found2.getPhoneNumber())
-                .isEqualTo(customer2.getPhoneNumber());
-
-        // Customer3
-        Customer found3 = customerRepository.findCustomerByPhoneNumber(customer3.getPhoneNumber());
-        assertThat(found3.getPhoneNumber())
-                .isEqualTo(customer3.getPhoneNumber());
+    public void givenCustomer_whenGetCustomerByLicensePlate_thenReturnJsonCustomer() throws Exception {
+        mockMvc.perform(get("/customers/{licensePlate}", customer2.getLicensePlate()))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$.id", is(customer2.getId())))
+                .andExpect(jsonPath("$.uuid", is(customer2.getUuid())))
+                .andExpect(jsonPath("$.licensePlate", is(customer2.getLicensePlate())))
+                .andExpect(jsonPath("$.firstName", is(customer2.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(customer2.getLastName())))
+                .andExpect(jsonPath("$.email", is(customer2.getEmail())))
+                .andExpect(jsonPath("$.phoneNumber", is(customer2.getPhoneNumber())))
+                .andExpect(jsonPath("$.carBrand", is(customer2.getCarBrand())))
+                .andExpect(jsonPath("$.carModel", is(customer2.getCarModel())));
     }
 
     @Test
-    public void whenFindByLicensePlate_thenReturnCustomer() {
-        // Customer1
-        Customer found1 = customerRepository.findCustomerByLicensePlate(customer1.getLicensePlate());
-        assertThat(found1.getLicensePlate())
-                .isEqualTo(customer1.getLicensePlate());
-
-        // Customer2
-        Customer found2 = customerRepository.findCustomerByLicensePlate(customer2.getLicensePlate());
-        assertThat(found2.getLicensePlate())
-                .isEqualTo(customer2.getLicensePlate());
-
-        // Customer3
-        Customer found3 = customerRepository.findCustomerByLicensePlate(customer3.getLicensePlate());
-        assertThat(found3.getLicensePlate())
-                .isEqualTo(customer3.getLicensePlate());
+    public void givenCustomer_whenGetCustomerByPhoneNumber_thenReturnJsonCustomer() throws Exception {
+        mockMvc.perform(get("/customers/{phoneNumber}", customer3.getPhoneNumber()))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$.id", is(customer3.getId())))
+                .andExpect(jsonPath("$.uuid", is(customer3.getUuid())))
+                .andExpect(jsonPath("$.licensePlate", is(customer3.getLicensePlate())))
+                .andExpect(jsonPath("$.firstName", is(customer3.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(customer3.getLastName())))
+                .andExpect(jsonPath("$.email", is(customer3.getEmail())))
+                .andExpect(jsonPath("$.phoneNumber", is(customer3.getPhoneNumber())))
+                .andExpect(jsonPath("$.carBrand", is(customer3.getCarBrand())))
+                .andExpect(jsonPath("$.carModel", is(customer3.getCarModel())));
     }
+
+    @Test
+    public void givenCustomer_whenGetCustomerByEmail_thenReturnJsonCustomer() throws Exception {
+        mockMvc.perform(get("/customers/{email}", customer1.getEmail()))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$.id", is(customer1.getId())))
+                .andExpect(jsonPath("$.uuid", is(customer1.getUuid())))
+                .andExpect(jsonPath("$.licensePlate", is(customer1.getLicensePlate())))
+                .andExpect(jsonPath("$.firstName", is(customer1.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(customer1.getLastName())))
+                .andExpect(jsonPath("$.email", is(customer1.getEmail())))
+                .andExpect(jsonPath("$.phoneNumber", is(customer1.getPhoneNumber())))
+                .andExpect(jsonPath("$.carBrand", is(customer1.getCarBrand())))
+                .andExpect(jsonPath("$.carModel", is(customer1.getCarModel())));
+    }
+
+    @Test
+    public void givenNoUuid_whenGetCustomersByUuid_thenStatusNotFound() throws Exception {
+        mockMvc.perform(get("/customers/{uuid}", "WrongUuid")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void givenNoLicensePlate_whenGetCustomersByLicensePlate_thenStatusNotFound() throws Exception {
+        mockMvc.perform(get("/customers/{licensePlate}", "NoWayThisIsALicensePlate")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void givenNoPhoneNumber_whenGetCustomersByPhoneNumber_thenStatusNotFound() throws Exception {
+        mockMvc.perform(get("/customers/{phoneNumber}", "NoPhoneNumber")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void givenNoEmail_whenGetCustomersByEmail_thenStatusNotFound() throws Exception {
+        mockMvc.perform(get("/customers/{email}", "ThisIsNotAnEmail")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+
 }
