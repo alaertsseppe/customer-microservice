@@ -1,4 +1,4 @@
-package fact.it.customerservice;
+/* package fact.it.customerservice;
 
 import fact.it.customerservice.model.Customer;
 import fact.it.customerservice.repository.CustomerRepository;
@@ -150,3 +150,4 @@ public class CustomerserviceIntegrationTests {
 
 
 }
+ */
