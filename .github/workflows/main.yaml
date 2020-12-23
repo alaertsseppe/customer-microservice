@@ -3,7 +3,7 @@ name: Test, Build and Upload artifact
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   compile:
@@ -38,7 +38,6 @@ jobs:
         with:
           postgresql version: 11
           postgresql db: customers
-          postgresql password: admin123
 
       - name: Test and build project
         run: mvn -f pom.xml clean install
