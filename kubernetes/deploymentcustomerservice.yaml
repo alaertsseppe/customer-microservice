@@ -63,7 +63,7 @@ spec:
     spec:                     # Spec for the containers that will be run in the Pods
       containers:
         - name: customer-service-server
-          image: seppealearts/customer-service
+          image: seppealaerts/customer-service
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
