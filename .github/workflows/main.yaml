@@ -33,12 +33,12 @@ jobs:
         with:
           java-version: 8
 
-      - name: Start postgresql for integration test
-        uses: harmon758/postgresql-action@v1
+      - name: Setup PostgreSQL
+        uses: Harmon758/postgresql-action@v1.0.0
         with:
           postgresql version: 11
           postgresql db: customers
-          postgresql password: postgres
+          postgresql password: admin123
 
       - name: Test and build project
         run: mvn -f pom.xml clean install
