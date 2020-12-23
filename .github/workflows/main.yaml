@@ -38,6 +38,8 @@ jobs:
         with:
           postgresql version: 11
           postgresql db: customers
+          postgresql user: postgres
+          postgresql password: admin123
 
       - name: Test and build project
         run: mvn -f pom.xml clean install
