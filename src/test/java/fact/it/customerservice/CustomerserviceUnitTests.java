@@ -19,7 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -72,16 +73,16 @@ public class CustomerserviceUnitTests {
         mockMvc.perform(get("/customers/{uuid}", customer1.getUuid()))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", IsCollectionWithSize.hasSize(1)))
-                .andExpect(jsonPath("$.id", Matchers.is(customer1.getId())))
-                .andExpect(jsonPath("$.uuid", Matchers.is(customer1.getUuid())))
-                .andExpect(jsonPath("$.licensePlate", Matchers.is(customer1.getLicensePlate())))
-                .andExpect(jsonPath("$.firstName", Matchers.is(customer1.getFirstName())))
-                .andExpect(jsonPath("$.lastName", Matchers.is(customer1.getLastName())))
-                .andExpect(jsonPath("$.email", Matchers.is(customer1.getEmail())))
-                .andExpect(jsonPath("$.phoneNumber", Matchers.is(customer1.getPhoneNumber())))
-                .andExpect(jsonPath("$.carBrand", Matchers.is(customer1.getCarBrand())))
-                .andExpect(jsonPath("$.carModel", Matchers.is(customer1.getCarModel())));
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$.id", is(customer1.getId())))
+                .andExpect(jsonPath("$.uuid", is(customer1.getUuid())))
+                .andExpect(jsonPath("$.licensePlate", is(customer1.getLicensePlate())))
+                .andExpect(jsonPath("$.firstName", is(customer1.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(customer1.getLastName())))
+                .andExpect(jsonPath("$.email", is(customer1.getEmail())))
+                .andExpect(jsonPath("$.phoneNumber", is(customer1.getPhoneNumber())))
+                .andExpect(jsonPath("$.carBrand", is(customer1.getCarBrand())))
+                .andExpect(jsonPath("$.carModel", is(customer1.getCarModel())));
     }
 
     @Test
@@ -92,16 +93,16 @@ public class CustomerserviceUnitTests {
         mockMvc.perform(get("/customers/{licensePlate}", customer2.getLicensePlate()))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", IsCollectionWithSize.hasSize(1)))
-                .andExpect(jsonPath("$.id", Matchers.is(customer2.getId())))
-                .andExpect(jsonPath("$.uuid", Matchers.is(customer2.getUuid())))
-                .andExpect(jsonPath("$.licensePlate", Matchers.is(customer2.getLicensePlate())))
-                .andExpect(jsonPath("$.firstName", Matchers.is(customer2.getFirstName())))
-                .andExpect(jsonPath("$.lastName", Matchers.is(customer2.getLastName())))
-                .andExpect(jsonPath("$.email", Matchers.is(customer2.getEmail())))
-                .andExpect(jsonPath("$.phoneNumber", Matchers.is(customer2.getPhoneNumber())))
-                .andExpect(jsonPath("$.carBrand", Matchers.is(customer2.getCarBrand())))
-                .andExpect(jsonPath("$.carModel", Matchers.is(customer2.getCarModel())));
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$.id", is(customer2.getId())))
+                .andExpect(jsonPath("$.uuid", is(customer2.getUuid())))
+                .andExpect(jsonPath("$.licensePlate", is(customer2.getLicensePlate())))
+                .andExpect(jsonPath("$.firstName", is(customer2.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(customer2.getLastName())))
+                .andExpect(jsonPath("$.email", is(customer2.getEmail())))
+                .andExpect(jsonPath("$.phoneNumber", is(customer2.getPhoneNumber())))
+                .andExpect(jsonPath("$.carBrand", is(customer2.getCarBrand())))
+                .andExpect(jsonPath("$.carModel", is(customer2.getCarModel())));
     }
 
     @Test
@@ -112,16 +113,16 @@ public class CustomerserviceUnitTests {
         mockMvc.perform(get("/customers/{phoneNumber}", customer3.getPhoneNumber()))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", IsCollectionWithSize.hasSize(1)))
-                .andExpect(jsonPath("$.id", Matchers.is(customer3.getId())))
-                .andExpect(jsonPath("$.uuid", Matchers.is(customer3.getUuid())))
-                .andExpect(jsonPath("$.licensePlate", Matchers.is(customer3.getLicensePlate())))
-                .andExpect(jsonPath("$.firstName", Matchers.is(customer3.getFirstName())))
-                .andExpect(jsonPath("$.lastName", Matchers.is(customer3.getLastName())))
-                .andExpect(jsonPath("$.email", Matchers.is(customer3.getEmail())))
-                .andExpect(jsonPath("$.phoneNumber", Matchers.is(customer3.getPhoneNumber())))
-                .andExpect(jsonPath("$.carBrand", Matchers.is(customer3.getCarBrand())))
-                .andExpect(jsonPath("$.carModel", Matchers.is(customer3.getCarModel())));
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$.id", is(customer3.getId())))
+                .andExpect(jsonPath("$.uuid", is(customer3.getUuid())))
+                .andExpect(jsonPath("$.licensePlate", is(customer3.getLicensePlate())))
+                .andExpect(jsonPath("$.firstName", is(customer3.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(customer3.getLastName())))
+                .andExpect(jsonPath("$.email", is(customer3.getEmail())))
+                .andExpect(jsonPath("$.phoneNumber", is(customer3.getPhoneNumber())))
+                .andExpect(jsonPath("$.carBrand", is(customer3.getCarBrand())))
+                .andExpect(jsonPath("$.carModel", is(customer3.getCarModel())));
     }
 
     @Test
@@ -132,16 +133,16 @@ public class CustomerserviceUnitTests {
         mockMvc.perform(get("/customers/{email}", customer1.getEmail()))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", IsCollectionWithSize.hasSize(1)))
-                .andExpect(jsonPath("$.id", Matchers.is(customer1.getId())))
-                .andExpect(jsonPath("$.uuid", Matchers.is(customer1.getUuid())))
-                .andExpect(jsonPath("$.licensePlate", Matchers.is(customer1.getLicensePlate())))
-                .andExpect(jsonPath("$.firstName", Matchers.is(customer1.getFirstName())))
-                .andExpect(jsonPath("$.lastName", Matchers.is(customer1.getLastName())))
-                .andExpect(jsonPath("$.email", Matchers.is(customer1.getEmail())))
-                .andExpect(jsonPath("$.phoneNumber", Matchers.is(customer1.getPhoneNumber())))
-                .andExpect(jsonPath("$.carBrand", Matchers.is(customer1.getCarBrand())))
-                .andExpect(jsonPath("$.carModel", Matchers.is(customer1.getCarModel())));
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$.id", is(customer1.getId())))
+                .andExpect(jsonPath("$.uuid", is(customer1.getUuid())))
+                .andExpect(jsonPath("$.licensePlate", is(customer1.getLicensePlate())))
+                .andExpect(jsonPath("$.firstName", is(customer1.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(customer1.getLastName())))
+                .andExpect(jsonPath("$.email", is(customer1.getEmail())))
+                .andExpect(jsonPath("$.phoneNumber", is(customer1.getPhoneNumber())))
+                .andExpect(jsonPath("$.carBrand", is(customer1.getCarBrand())))
+                .andExpect(jsonPath("$.carModel", is(customer1.getCarModel())));
     }
 
     @Test
