@@ -8,7 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -23,8 +25,8 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(CustomerController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class CustomerserviceUnitTests {
 
     @Autowired
@@ -57,7 +59,7 @@ public class CustomerserviceUnitTests {
 
         given(customerRepository.findAll()).willReturn(allCustomers);
 
-        mockMvc.perform(get("/api/customers")
+        mockMvc.perform(get("/customers")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)));
@@ -68,10 +70,9 @@ public class CustomerserviceUnitTests {
 
         given(customerRepository.findCustomerByUuid(customer1.getUuid())).willReturn(customer1);
 
-        mockMvc.perform(get("/customers/{uuid}", customer1.getUuid()))
+        mockMvc.perform(get("/customer/uuid/{uuid}", customer1.getUuid()))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$.id", is(customer1.getId())))
                 .andExpect(jsonPath("$.uuid", is(customer1.getUuid())))
                 .andExpect(jsonPath("$.licensePlate", is(customer1.getLicensePlate())))
@@ -88,10 +89,9 @@ public class CustomerserviceUnitTests {
 
         given(customerRepository.findCustomerByLicensePlate(customer2.getLicensePlate())).willReturn(customer2);
 
-        mockMvc.perform(get("/customers/{licensePlate}", customer2.getLicensePlate()))
+        mockMvc.perform(get("/customer/licenseplate/{licensePlate}", customer2.getLicensePlate()))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$.id", is(customer2.getId())))
                 .andExpect(jsonPath("$.uuid", is(customer2.getUuid())))
                 .andExpect(jsonPath("$.licensePlate", is(customer2.getLicensePlate())))
@@ -106,12 +106,11 @@ public class CustomerserviceUnitTests {
     @Test
     public void givenPhoneNumber_whenGetCustomerByPhoneNumber_thenReturnJsonCustomer() throws Exception {
 
-        given(customerRepository.findCustomerByEmail(customer3.getLicensePlate())).willReturn(customer3);
+        given(customerRepository.findCustomerByPhoneNumber(customer3.getPhoneNumber())).willReturn(customer3);
 
-        mockMvc.perform(get("/customers/{phoneNumber}", customer3.getPhoneNumber()))
+        mockMvc.perform(get("/customer/phonenumber/{phoneNumber}", customer3.getPhoneNumber()))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$.id", is(customer3.getId())))
                 .andExpect(jsonPath("$.uuid", is(customer3.getUuid())))
                 .andExpect(jsonPath("$.licensePlate", is(customer3.getLicensePlate())))
@@ -128,10 +127,9 @@ public class CustomerserviceUnitTests {
 
         given(customerRepository.findCustomerByEmail(customer1.getEmail())).willReturn(customer1);
 
-        mockMvc.perform(get("/customers/{email}", customer1.getEmail()))
+        mockMvc.perform(get("/customer/email/{email}", customer1.getEmail()))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$.id", is(customer1.getId())))
                 .andExpect(jsonPath("$.uuid", is(customer1.getUuid())))
                 .andExpect(jsonPath("$.licensePlate", is(customer1.getLicensePlate())))
