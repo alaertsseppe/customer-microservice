@@ -23,25 +23,25 @@ public class CustomerController {
         return customerRepository.findAll();
     }
 
-    // GET /customers/{licensePlate}
+    // GET /customer/licenseplate/{licensePlate}
     @GetMapping("/customer/licenseplate/{licensePlate}")
     public Customer findCustomerByLicensePlate(@PathVariable String licensePlate){
         return customerRepository.findCustomerByLicensePlate(licensePlate);
     }
 
-    // GET /customers/{phoneNumber}
+    // GET /customer/phonenumber/{phoneNumber}
     @GetMapping("/customer/phonenumber/{phoneNumber}")
     public Customer findCustomerByPhoneNumber(@PathVariable String phoneNumber){
         return customerRepository.findCustomerByPhoneNumber(phoneNumber);
     }
 
-    // GET /customers/{email}
+    // GET /customer/email/{email}
     @GetMapping("/customer/email/{email}")
     public Customer findCustomerByEmail(@PathVariable String email){
         return customerRepository.findCustomerByEmail(email);
     }
 
-    // GET /customer/{uuid}
+    // GET /customer/uuid/{uuid}
     @GetMapping("/customer/uuid/{uuid}")
     public Customer findCustomerByUuid(@PathVariable String uuid){
         return customerRepository.findCustomerByUuid(uuid);

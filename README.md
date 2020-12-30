@@ -5,9 +5,9 @@
 
 ### REST API endpoints
     GET  /customers
-    GET  /customers/{licensePlate}
-    GET  /customers/{phoneNumber}
-    GET  /customers/{email}
-    GET  /customers/{uuid}
+    GET  /customer/licenseplate/{licensePlate}
+    GET  /customer/phonenumber/{phoneNumber}
+    GET  /customer/email/{email}
+    GET  /customer/uuid/{uuid}
 
 
